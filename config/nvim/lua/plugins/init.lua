@@ -129,6 +129,7 @@ cmd [[Plug 'nvim-treesitter/nvim-treesitter-textobjects']]
 cmd [[Plug 'p00f/nvim-ts-rainbow']]
 cmd [[Plug 'onsails/lspkind-nvim']]
 cmd [[Plug 'RRethy/nvim-base16']]
+cmd [[Plug 'Julpikar/night-owl.nvim']]
 cmd [[Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}]]
 cmd [[Plug 'windwp/nvim-autopairs']]
 cmd [[Plug 'mhartington/formatter.nvim']]
@@ -157,3 +158,4 @@ require("plugins.galaxyline")
 require("plugins.formatter")
 require("plugins.tabline")
 require("plugins.startify")
+require("night-owl")

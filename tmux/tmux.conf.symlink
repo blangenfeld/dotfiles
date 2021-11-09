@@ -97,6 +97,21 @@ if-shell '[[ $(uname -s) = Linux ]]' {
     bind C-v run 'tmux set-buffer "$(xclip -o -sel clipboard)"; tmux paste-buffer'
 }
 
+# Save/restore tmux sessions
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'  # save: prefix + Ctrl-s;   restore: prefix + Ctrl-r
+# Continuous saving of tmux environment
+# Automatic tmux start when computer/server is turned on
+# Automatic restore when tmux is started
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @continuum-boot 'on'  # Tmux is automatically started after the computer is turned on. This doesn't start a terminal with tmux
+set -g @continuum-restore 'on'  # last saved environment is automatically restored when tmux is started
+# Default path is '~/.tmux/resurrect' but can be changed with
+# set -g @resurrect-dir '~/cloud/.tmux-resurrect/'
+
+# Initialize TPM (Tmux Plugin Manager). Press <Prefix>I to load plugins
+run '~/.tmux/plugins/tpm/tpm'
+
 ##############################
 ### Color & Style Settings ###
 ##############################

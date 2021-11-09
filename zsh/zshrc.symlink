@@ -178,6 +178,7 @@ fi
 
 # use nvim, but don't make me think about it
 [[ -n "$(command -v nvim)" ]] && alias vim="nvim"
+alias vi="vim"
 
 # Filesystem aliases
 alias ..='cd ..'
@@ -224,3 +225,30 @@ alias nr="npm run"
 
 source "$DOTFILES/zsh/utils.zsh"
 source "$DOTFILES/zsh/prompt.zsh"
+
+. $(brew --prefix asdf)/asdf.sh
+
+# Enable history in iex.
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# Older versions of ruby (2.6.x, at least) won't build without some help.
+export RUBY_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) --with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml)"
+export RUBY_CFLAGS="-Wno-error=implicit-function-declaration"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/brian/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/brian/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/brian/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/brian/google-cloud-sdk/completion.zsh.inc'; fi
+
+# libpq is keg-only because it conflicts with postgresql.
+# Remove this if we someday brew install postgresql.
+export PATH="$(brew --prefix libpq)/bin:$PATH"
+
+# mysql-client is keg-only because it's a subset of mysql.
+# Remove this if we someday brew install mysql.
+export PATH="$(brew --prefix mysql-client)/bin:$PATH"
+
+# Initially added for gigalixir, because we had to go the pip3 installation 
+# route for lack of an Apple silicon bottle. Maybe this will change?
+export PATH="/Users/brian/.local/bin:$PATH"
